@@ -17,13 +17,14 @@
 <a-asset-item id="monster" src="monster/monster.dae"></a-asset-item>
 -->
 <a-asset-item id="brainstem" src="https://cdn.aframe.io/test-models/models/glTF-2.0/brainstem/BrainStem.gltf"></a-asset-item>
-<a-asset-item id="baxter-obj" src="baxterhtml.obj"></a-asset-item>
+<a-asset-item id="baxter-obj" src="https://raw.githubusercontent.com/ericrosenbrown/WebVR/master/baxterhtml.obj"></a-asset-item>
 </a-assets>
 <a-entity position="0 0 -12">
 <a-text value="COLLADA" color="#000000" position="-2 -2 6" scale="1.5 1.5 1.5"></a-text>
 <a-entity gltf-model="#brainstem" position="10 -1 5" scale="3 3 3"></a-entity>
 <a-text value="glTF" color="#000000" position="9.75 -2 6" scale="1.5 1.5 1.5"></a-text>
 <a-text value="OBJ" color="#000000" position="4.75 -2 6" scale="1.5 1.5 1.5"></a-text>
+<a-entity obj-model="#baxter-obj" material="color: red" position="5 0 5"></a-entity>
 <!--
 <a-entity obj-model="obj: #crate-obj; mtl: #crate-mtl" position="5 0 5"></a-entity>
 <a-entity obj-model="obj: #crate-obj; mtl: #crate-mtl" position="5 2 5"></a-entity>
