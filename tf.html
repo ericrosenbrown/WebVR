@@ -48,13 +48,13 @@
   // ---------
   var tfClient = new ROSLIB.TFClient({
     ros : ros,
-    fixedFrame : 'world',
+    fixedFrame : 'base',
     angularThres : 0.01,
     transThres : 0.01
   });
 
   // Subscribe to a turtle.
-  tfClient.subscribe('turtle1', function(tf) {
+  tfClient.subscribe('right_wrist', function(tf) {
     console.log(tf);
   });
 </script>
