@@ -1,0 +1,10 @@
+Transform {translation: Vector3, rotation: Quaternion}
+rotation
+:
+Quaternion {x: 0.8040080724139849, y: -0.5552642161942868, z: 0.18892298434038007, w: -0.09777921913789919}
+translation
+:
+Vector3 {x: 0.5285682598184149, y: -0.6936285936057801, z: 0.36554874608875054}
+__proto__
+:
+Object
