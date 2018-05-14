@@ -17,17 +17,38 @@
         }
 
         function updateEntity(tf, entityId){
+            console.log(entityId);
             let entity = document.querySelector(entityId);
+
             let position = {x: (tf.translation.x / 4 ), y: (tf.translation.z / 4), z: - (tf.translation.y / 4)}
             entity.setAttribute('position', position);
 
             let quat = {_x: tf.rotation.x, _y: tf.rotation.y, _z: tf.rotation.z, _w: tf.rotation.w}
+
+            //console.log(quat);
             let rotations = new THREE.Euler().setFromQuaternion(quat, 'XYZ' );
             // currently to modify the rotation I swap the y and z values, which makes certain pieces look correct
             // (like the gray part with springs) but not all of them.
             let modifiedRotation = {x: radToDegree(rotations._x), y: radToDegree(rotations._z), z: radToDegree(rotations._y)};
+            //let modifiedRotation = {x: 0, y: radToDegree(rotations._z), z: 0};
+            //let modifiedRotation = {x: 0, y: 0, z: 0};
+            //console.log(modifiedRotation);
+            //let modifiedRotation = {x: 0, y: 0, z: 0};
+            if(entityId === "#head_h1_entity"){
+                modifiedRotation = {x: 90, y: 0, z: 0};
+            }
+            // if(entityId === "#upper_shoulder_s1_entity"){
+            //     modifiedRotation = {x: 90, y: 0, z: 0};
+            // }
+            if(entityId === "#lower_shoulder_s1_entity"){
+                modifiedRotation = {x: 90, y: 0, z: 0};
+                //modifiedRotation.x = 90;
+            }
+
+            
+
             console.log(modifiedRotation);
-            entity.setAttribute('rotation', updatedRotation);
+            entity.setAttribute('rotation', modifiedRotation);
             }
             
 
@@ -117,55 +138,55 @@
                 updateEntity(tf, "#lower_shoulder_s1_entity");
             });
 
-            tfClient.subscribe('right_upper_elbow', function(tf) {
-                updateEntity(tf, "#upper_elbow_e1_entity");
-            });
+            // tfClient.subscribe('right_upper_elbow', function(tf) {
+            //     updateEntity(tf, "#upper_elbow_e1_entity");
+            // });
 
-            tfClient.subscribe('right_lower_elbow', function(tf) {
-                updateEntity(tf, "#lower_elbow_e1_entity");
-            });
+            // tfClient.subscribe('right_lower_elbow', function(tf) {
+            //     updateEntity(tf, "#lower_elbow_e1_entity");
+            // });
 
-            tfClient.subscribe('right_upper_forearm', function(tf) {
-                updateEntity(tf, "#upper_forearm_w1_entity");
-            });
+            // tfClient.subscribe('right_upper_forearm', function(tf) {
+            //     updateEntity(tf, "#upper_forearm_w1_entity");
+            // });
 
-            tfClient.subscribe('right_lower_forearm', function(tf) {
-                updateEntity(tf, "#lower_forearm_w1_entity");
-            });
+            // tfClient.subscribe('right_lower_forearm', function(tf) {
+            //     updateEntity(tf, "#lower_forearm_w1_entity");
+            // });
 
-            tfClient.subscribe('right_wrist', function(tf) {
-                updateEntity(tf, "#wrist_w1_entity");
-            });
+            // tfClient.subscribe('right_wrist', function(tf) {
+            //     updateEntity(tf, "#wrist_w1_entity");
+            // });
 
-            tfClient.subscribe('left_upper_shoulder', function(tf) {
-                updateEntity(tf, "#upper_shoulder_s0_entity");
-            });
+            // tfClient.subscribe('left_upper_shoulder', function(tf) {
+            //     updateEntity(tf, "#upper_shoulder_s0_entity");
+            // });
 
-            tfClient.subscribe('left_lower_shoulder', function(tf) {
-                updateEntity(tf, "#lower_shoulder_s0_entity");
-            });
+            // tfClient.subscribe('left_lower_shoulder', function(tf) {
+            //     updateEntity(tf, "#lower_shoulder_s0_entity");
+            // });
 
-            tfClient.subscribe('left_upper_elbow', function(tf) {
-                updateEntity(tf, "#upper_elbow_e0_entity");
-            });
+            // tfClient.subscribe('left_upper_elbow', function(tf) {
+            //     updateEntity(tf, "#upper_elbow_e0_entity");
+            // });
 
-            tfClient.subscribe('left_lower_elbow', function(tf) {
-                updateEntity(tf, "#lower_elbow_e0_entity");
-            });
+            // tfClient.subscribe('left_lower_elbow', function(tf) {
+            //     updateEntity(tf, "#lower_elbow_e0_entity");
+            // });
 
-            tfClient.subscribe('left_upper_forearm', function(tf) {
-                updateEntity(tf, "#upper_forearm_w0_entity");
-            });
+            // tfClient.subscribe('left_upper_forearm', function(tf) {
+            //     updateEntity(tf, "#upper_forearm_w0_entity");
+            // });
 
-            tfClient.subscribe('left_lower_forearm', function(tf) {
-                console.log("left lower forearm");
-                console.log(tf);
-                updateEntity(tf, "#lower_forearm_w0_entity");
-            });
+            // tfClient.subscribe('left_lower_forearm', function(tf) {
+            //     console.log("left lower forearm");
+            //     console.log(tf);
+            //     updateEntity(tf, "#lower_forearm_w0_entity");
+            // });
 
-            tfClient.subscribe('left_wrist', function(tf) {
-                updateEntity(tf, "#wrist_w0_entity");
-            });
+            // tfClient.subscribe('left_wrist', function(tf) {
+            //     updateEntity(tf, "#wrist_w0_entity");
+            // });
 
             
     });
@@ -178,9 +199,9 @@
     <a-scene background="color: #e08282" stats>
     <a-assets>
 <!--         <a-asset-item id="brainstem" src="https://cdn.aframe.io/test-models/models/glTF-2.0/brainstem/BrainStem.gltf"></a-asset-item> -->
-<!--         <a-asset-item id="base" src="https://raw.githubusercontent.com/ericrosenbrown/WebVR/master/baxdae.dae"></a-asset-item>
+        <a-asset-item id="base" src="https://raw.githubusercontent.com/ericrosenbrown/WebVR/master/baxdae.dae"></a-asset-item>
         <a-asset-item id="torso" src="https://raw.githubusercontent.com/ericrosenbrown/WebVR/master/base_link.DAE"></a-asset-item>
-        <a-asset-item id="right_wrist" src="https://raw.githubusercontent.com/ericrosenbrown/WebVR/master/W2.DAE"></a-asset-item> -->
+        <a-asset-item id="right_wrist" src="https://raw.githubusercontent.com/ericrosenbrown/WebVR/master/W2.DAE"></a-asset-item>
                <!-- <a-asset-item id="torso-base-link-collision" src="https://raw.githubusercontent.com/RethinkRobotics/baxter-common/master/baxter-description/meshes/torso/base-link-collision.DAE"></a-asset-item> -->
 
         <a-asset-item id="head_h0" src="https://raw.githubusercontent.com/RethinkRobotics/baxter_common/master/baxter_description/meshes/head/H0.DAE"></a-asset-item>
